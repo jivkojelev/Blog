@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Blog.Entities.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-md-offset-4" style="margin-top: 20px; ">
+            <div class="card" style="border: 1px solid lightgrey; border-top: 3px solid cornflowerblue; border-radius: 4px; padding: 10px; max-height: 300px; min-width: 300px; word-wrap:break-word; word-break: break-word; overflow:hidden;">
+                <div class="card-body">
+                    @Html.ActionLink(item.Title, "Details", new { id = item.ID })
+                    <h6 class="card-subtitle mb-2 text-muted"">@Html.DisplayFor(modelItem => item.DateCreated)</h6>
+                    <!--p class="card-text"--><!--/p-->
+                    <a href="#!" class="card-link">See More</a>
+                    <a href="#!" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
