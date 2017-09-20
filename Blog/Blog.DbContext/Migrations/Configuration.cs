@@ -1,5 +1,8 @@
 namespace Blog.DbContext.Migrations
 {
+    using Entities;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,18 +18,31 @@ namespace Blog.DbContext.Migrations
 
         protected override void Seed(Blog.DbContext.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            string[] roles =
+            {
+                "admin",
+                "registered",
+                "guest"
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            foreach (var role in roles)
+            {
+                var roleStore = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                if (!context.Roles.Any(r => r.Name == role))
+                {
+                    roleStore.Create(new IdentityRole(role));
+                }
+            }
+
+            if (!(context.Users.Any(u => u.Email == "admin@mail.com")))
+            {
+                var userStore = new UserStore<User>(context);
+                var userManager = new UserManager<User>(userStore);
+                var userToInsert = new User { UserName = "admin", PhoneNumber = "000", Email = "admin@mail.com", isAdmin = true };
+                userManager.Create(userToInsert, "std123");
+
+                userManager.AddToRole(userToInsert.Id, "admin");
+            }
         }
     }
 }
