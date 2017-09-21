@@ -22,3 +22,25 @@ select,
 textarea {
     max-width: 280px;
 }
+.blog-post .title a{
+    font-size: 24px;
+    color: dimgray;
+    text-decoration:none
+}
+.link{
+    border: 1px solid black;
+    font-size: 16px !important;
+    background-color: lightskyblue;
+    text-align: center;
+    border-radius: 8px;
+    width: 100px;
+}
+.link-danger{
+    border: 1px solid black;
+    font-size: 16px !important;
+    color: white !important;
+    background-color: darkred;
+    text-align: center;
+    border-radius: 8px;
+    width: 100px;
+}

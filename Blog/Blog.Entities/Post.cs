@@ -1,10 +1,12 @@
-﻿using Blog.Common;
+﻿using Microsoft.AspNet.Identity;
+using Blog.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Blog.Entities
 {
@@ -16,6 +18,7 @@ namespace Blog.Entities
 
         [Display(Name="DateTime Created")]
         public DateTime DateCreated { get; set; }
+//        public virtual User Author { get; set; }
 
         public Post()
         {

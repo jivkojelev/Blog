@@ -13,6 +13,7 @@ namespace Blog.Entities
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
+        public static object Identity { get; internal set; }
         public bool isAdmin { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

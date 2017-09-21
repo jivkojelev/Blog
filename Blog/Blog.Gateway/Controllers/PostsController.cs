@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,11 +18,15 @@ namespace Blog.Gateway.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            var posts = db.Posts;
+            var orderPosts = posts.OrderByDescending(p => p.DateCreated);
+            return View(orderPosts.ToList());
         }
 
+        [AllowAnonymous]
         // GET: Posts/Details/5
         public ActionResult Details(string id)
         {
@@ -37,6 +42,7 @@ namespace Blog.Gateway.Controllers
             return View(post);
         }
 
+        [Authorize]
         // GET: Posts/Create
         public ActionResult Create()
         {
@@ -46,9 +52,10 @@ namespace Blog.Gateway.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Content")] Post post)
+        public ActionResult Create([Bind(Include = "ID,Title,Content,DateCreated")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +69,7 @@ namespace Blog.Gateway.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Posts/Edit/5
         public ActionResult Edit(string id)
         {
@@ -80,12 +88,14 @@ namespace Blog.Gateway.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,Content,DateCreated")] Post post)
+        public ActionResult Edit([Bind(Include = "ID,Title,Content")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.DateCreated = DateTime.Now;
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,6 +103,7 @@ namespace Blog.Gateway.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Posts/Delete/5
         public ActionResult Delete(string id)
         {
@@ -108,6 +119,7 @@ namespace Blog.Gateway.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

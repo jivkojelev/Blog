@@ -6,24 +6,85 @@
 
 <h2>Index</h2>
 
+@if (Request.IsAuthenticated)
+{ 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-4 col-md-offset-4" style="margin-top: 20px; ">
-            <div class="card" style="border: 1px solid lightgrey; border-top: 3px solid cornflowerblue; border-radius: 4px; padding: 10px; max-height: 300px; min-width: 300px; word-wrap:break-word; word-break: break-word; overflow:hidden;">
-                <div class="card-body">
-                    @Html.ActionLink(item.Title, "Details", new { id = item.ID })
-                    <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.DateCreated)</h6>
-                    <!--p class="card-text"--><!--/p-->
-                    <a href="#!" class="card-link">See More</a>
-                    <a href="#!" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-sm-8 blog-main">
+
+                            <div class="blog-post">
+                            @foreach (var item in Model)
+                            {
+                                <div class="title">@Html.ActionLink(item.Title, "Details", new { id = item.ID })</div>
+                                if (Request.IsAuthenticated && User.IsInRole("admin"))
+                                {
+                                        <div class="link" style="display: inline-block; ">@Html.ActionLink("Edit", "Edit", new { id = item.ID })</div>
+                                        <div class="link-danger" style="display: inline-block; ">@Html.ActionLink("Delete", "Delete", new { id = item.ID })</div>
+                                }
+                                <p class="blog-post-meta">Date Created: @Html.DisplayFor(modelItem => item.DateCreated ) <!--by <a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Mark</a>--></p>
+                                <div>@Html.DisplayFor(modelItem => item.Content)</div>
+                                <hr />
+                            }
+                            </div><!-- /.blog-post -->
+                            <nav class="blog-pagination">
+                                <a class="btn btn-outline-primary" href="https://getbootstrap.com/docs/4.0/examples/blog/#">Older</a>
+                                <a class="btn btn-outline-secondary disabled" href="https://getbootstrap.com/docs/4.0/examples/blog/#">Newer</a>
+                            </nav>
+
+                        </div><!-- /.blog-main -->
+
+                        <div class="col-sm-3 offset-sm-1 blog-sidebar">
+                            <div class="sidebar-module sidebar-module-inset">
+                                <h4>About</h4>
+                                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                            </div>
+                            <div class="sidebar-module">
+                                <h4>Archives</h4>
+                                <ol class="list-unstyled">
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">March 2014</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">February 2014</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">January 2014</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">December 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">November 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">October 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">September 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">August 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">July 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">June 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">May 2013</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">April 2013</a></li>
+                                </ol>
+                            </div>
+                            <div class="sidebar-module">
+                                <h4>Elsewhere</h4>
+                                <ol class="list-unstyled">
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">GitHub</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Twitter</a></li>
+                                    <li><a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Facebook</a></li>
+                                </ol>
+                            </div>
+                        </div><!-- /.blog-sidebar -->
+
+
+                    </div><!-- /.row -->
+
+                </div><!-- /.container -->
+
+
+
+                <footer class="blog-footer">
+                    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo"></a>.</p>
+                    <p>
+                        <a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Back to top</a>
+                    </p>
+                </footer>
+
+    
 

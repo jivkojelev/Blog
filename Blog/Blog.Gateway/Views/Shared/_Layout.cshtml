@@ -6,10 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <!--link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" /-->
-            
 
 </head>
 <body>
@@ -26,6 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (Request.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    }
                     <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
