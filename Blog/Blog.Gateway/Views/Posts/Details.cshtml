@@ -12,17 +12,18 @@
         <div class="col-sm-8 blog-main">
 
             <div class="blog-post">
-                    <div class="title"><h1>@Html.DisplayFor(model => model.Title)</h1></div>
+                    <h1>@Html.DisplayFor(model => model.Title)</h1></div>
                     <p class="blog-post-meta">Date Created:@Html.DisplayFor(model => model.DateCreated ) <!--by <a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Mark</a>--></p>
                         <div>@Html.DisplayFor(model => model.Content )</div>
                         <hr />
+
            </div><!-- /.blog-post -->
+
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="https://getbootstrap.com/docs/4.0/examples/blog/#">Older</a>
                 <a class="btn btn-outline-secondary disabled" href="https://getbootstrap.com/docs/4.0/examples/blog/#">Newer</a>
             </nav>
-
-        </div><!-- /.blog-main -->
+   <!-- /.blog-main -->
 
         <div class="col-sm-3 offset-sm-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
@@ -64,7 +65,6 @@
 
 
 <footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo"></a>.</p>
     <p>
         <a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Back to top</a>
     </p>

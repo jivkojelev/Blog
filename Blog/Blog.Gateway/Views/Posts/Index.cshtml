@@ -25,8 +25,8 @@
                                 <div class="title">@Html.ActionLink(item.Title, "Details", new { id = item.ID })</div>
                                 if (Request.IsAuthenticated && User.IsInRole("admin"))
                                 {
-                                        <div class="link" style="display: inline-block; ">@Html.ActionLink("Edit", "Edit", new { id = item.ID })</div>
-                                        <div class="link-danger" style="display: inline-block; ">@Html.ActionLink("Delete", "Delete", new { id = item.ID })</div>
+                                    <button class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.ID })</button>
+                                    <button class="btn btn-danger" style="color: white !important;">@Html.ActionLink("Delete", "Delete", new { id = item.ID })</button>
                                 }
                                 <p class="blog-post-meta">Date Created: @Html.DisplayFor(modelItem => item.DateCreated ) <!--by <a href="https://getbootstrap.com/docs/4.0/examples/blog/#">Mark</a>--></p>
                                 <div>@Html.DisplayFor(modelItem => item.Content)</div>

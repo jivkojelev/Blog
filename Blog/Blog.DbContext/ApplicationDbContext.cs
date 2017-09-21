@@ -20,5 +20,6 @@ namespace Blog.DbContext
         }
 
         public virtual IDbSet<Post> Posts { get; set; }
+        public virtual IDbSet<Comment> Comments { get; set; }
     }
 }

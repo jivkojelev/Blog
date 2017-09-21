@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201709201845151_UserRolesAdded.Designer.cs">
       <DependentUpon>201709201845151_UserRolesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709210643185_Comments.cs" />
+    <Compile Include="Migrations\201709210643185_Comments.Designer.cs">
+      <DependentUpon>201709210643185_Comments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709201845151_UserRolesAdded.resx">
       <DependentUpon>201709201845151_UserRolesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709210643185_Comments.resx">
+      <DependentUpon>201709210643185_Comments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,41 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Collections;
 
 namespace Blog.Entities
 {
-    public class Post
+    public class Comment
     {
         public string ID { get; set; }
-        [Required]
-        public string Title { get; set; }
-
-        [Required]
-        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
-        [Display(Name="DateTime Created")]
+        [Display(Name = "DateTime Created")]
         public DateTime DateCreated { get; set; }
+        public virtual User Author { get; set; }
 
-        //public virtual Comment Comments { get; set; }
-        [DataType(DataType.MultilineText)]
-        public virtual ICollection<Comment> Comments { get; set; }
-        //        public virtual User Author { get; set; }
-
-        public Post()
+        public Comment()
         {
 
         }
 
-        public Post(string id, string title, string content, DateTime datecreated)
+        public Comment(string id, string title, string content, DateTime datecreated)
         {
 
         }
 
-        public Post(string title, string content)
+        public Comment(string title, string content)
         {
             this.ID = new CustomId().ToString();
-            this.Title = title;
             this.Content = content;
             this.DateCreated = DateTime.Now;
         }

@@ -27,7 +27,7 @@ textarea {
     color: dimgray;
     text-decoration:none
 }
-.link{
+.link .aa{
     border: 1px solid black;
     font-size: 16px !important;
     background-color: lightskyblue;
@@ -35,12 +35,13 @@ textarea {
     border-radius: 8px;
     width: 100px;
 }
-.link-danger{
-    border: 1px solid black;
-    font-size: 16px !important;
-    color: white !important;
+.link-danger a{
     background-color: darkred;
     text-align: center;
-    border-radius: 8px;
+    padding: 5px;
+    border-radius: 4px;
     width: 100px;
+}
+.btn-primary a{
+    color: white;
 }
