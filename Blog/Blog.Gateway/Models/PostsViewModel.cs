@@ -20,5 +20,16 @@ namespace Blog.Gateway.Models
             public string Content { get; set; }
 
         }
+        public class PostViewModelAddComment
+        {
+            [Required]
+            [StringLength(100)]
+            public string Title { get; set; }
+
+            [Required]
+            [DataType(DataType.MultilineText)]
+            public string Content { get; set; }
+
+        }
     }
 }

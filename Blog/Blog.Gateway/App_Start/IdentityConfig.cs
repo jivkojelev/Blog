@@ -48,8 +48,8 @@ namespace Blog.Gateway
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                AllowOnlyAlphanumericUserNames = true,
+                RequireUniqueEmail = true,
             };
 
             // Configure validation logic for passwords

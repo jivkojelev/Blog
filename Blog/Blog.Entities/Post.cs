@@ -14,19 +14,27 @@ namespace Blog.Entities
     {
         public string ID { get; set; }
         [Required]
+        [StringLength(100)]
+        [MinLength(5)]
         public string Title { get; set; }
 
         [Required]
+        [MinLength(10)]
+        [MaxLength(1000)]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
-        [Display(Name="DateTime Created")]
+        [Display(Name = "DateTime Created")]
         public DateTime DateCreated { get; set; }
 
         //public virtual Comment Comments { get; set; }
-        [DataType(DataType.MultilineText)]
-        public virtual ICollection<Comment> Comments { get; set; }
-        //        public virtual User Author { get; set; }
+        //[DataType(DataType.MultilineText)]
+        //public virtual ICollection<Comment> Comments { get; set; }
+
+
+        // [Display(Name = "Author")]
+        // public virtual string Author { get; set; }
+        // public ICollection<Comment> Comments { get; set; }
 
         public Post()
         {

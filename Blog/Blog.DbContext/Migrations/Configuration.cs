@@ -18,29 +18,31 @@ namespace Blog.DbContext.Migrations
 
         protected override void Seed(Blog.DbContext.ApplicationDbContext context)
         {
-            string[] roles =
+            if (!context.Roles.Any())
             {
-                "admin",
-                "registered",
-                "guest"
-            };
-
-            foreach (var role in roles)
-            {
-                var roleStore = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-                if (!context.Roles.Any(r => r.Name == role))
+                string[] roles =
                 {
-                    roleStore.Create(new IdentityRole(role));
+                    "admin",
+                    "registered",
+                    "guest"
+                };
+
+                foreach (var role in roles)
+                {
+                    var roleStore = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                    //if (!context.Roles.Any(r => r.Name == role))
+                    //{
+                        roleStore.Create(new IdentityRole(role));
+                    //}
                 }
             }
 
-            if (!(context.Users.Any(u => u.Email == "admin@mail.com")))
+            if (!(context.Users.Any()))
             {
                 var userStore = new UserStore<User>(context);
                 var userManager = new UserManager<User>(userStore);
-                var userToInsert = new User { UserName = "admin", PhoneNumber = "000", Email = "admin@mail.com", isAdmin = true };
-                userManager.Create(userToInsert, "std123");
-
+                var userToInsert = new User { UserName = "admin", Email = "admin@mail.com" };
+                userManager.Create(userToInsert, "1");
                 userManager.AddToRole(userToInsert.Id, "admin");
             }
         }

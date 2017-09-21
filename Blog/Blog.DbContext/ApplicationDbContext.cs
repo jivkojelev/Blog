@@ -9,7 +9,8 @@ namespace Blog.DbContext
     public class ApplicationDbContext : IdentityDbContext<Entities.User>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            //: base("localhost", throwIfV1Schema: false)
+            : base("AppHarbor", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
@@ -20,6 +21,6 @@ namespace Blog.DbContext
         }
 
         public virtual IDbSet<Post> Posts { get; set; }
-        public virtual IDbSet<Comment> Comments { get; set; }
+
     }
 }

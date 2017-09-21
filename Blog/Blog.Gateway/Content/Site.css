@@ -22,9 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
-.blog-post .title a{
-    font-size: 24px;
-    color: dimgray;
+.title a{
+    font-size: 28px;
+    color: darkslategray;
     text-decoration:none
 }
 .link .aa{
